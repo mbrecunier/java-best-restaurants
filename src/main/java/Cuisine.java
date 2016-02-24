@@ -56,17 +56,19 @@ public class Cuisine {
       return cuisine;
     }
   }
-  //
-  // //UPDATE
-  // public void update(String newType) {
-  //   this.mType = newType;
-  //   try(Connection con = DB.sql2o.open()) {
-  //     /******************************************************
-  //       Students: TODO: Create sql query and execute update
-  //     *******************************************************/
-  //   }
-  // }
-  //
+
+  //UPDATE
+  public void update(String newType) {
+    this.type = newType;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE cuisines SET type = :newType WHERE id = :id;";
+      con.createQuery(sql)
+        .addParameter("newType", newType)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
   // public void delete() {
   //   try(Connection con = DB.sql2o.open()) {
   //     /******************************************************
@@ -77,7 +79,6 @@ public class Cuisine {
   //
   // /******************************************************
   //   Students:
-  //   TODO: Create find method
   //   TODO: Create method to get restaurants
   // *******************************************************/
 

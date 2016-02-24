@@ -26,4 +26,12 @@ public class CuisineTest {
     newCuisine.save();
     assertTrue(newCuisine.equals(Cuisine.find(newCuisine.getId())));
   }
+
+  @Test
+  public void update_changesCuisineType() {
+    Cuisine newCuisine = new Cuisine("hot pockets");
+    newCuisine.save();
+    newCuisine.update("lean");
+    assertEquals(newCuisine.getType(), "lean");
+  }
 }
