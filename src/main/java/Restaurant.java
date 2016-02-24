@@ -5,7 +5,7 @@ public class Restaurant {
   private int id;
   private int cuisineId;
   private String name;
-  //
+
   public Restaurant (String newName) {
     this.name = newName;
   }
@@ -17,18 +17,18 @@ public class Restaurant {
   public String getName() {
     return name;
   }
-  //
-  // @Override
-  // public boolean equals(Object otherRestaurant){
-  //   if (!(otherRestaurant instanceof Restaurant)) {
-  //     return false;
-  //   } else {
-  //     Restaurant newRestaurant = (Restaurant) otherRestaurant;
-  //     return this.getName().equals(newRestaurant.getName()) &&
-  //       this.getId() == newRestaurant.getId();
-  //   }
-  // }
-  //
+
+  @Override
+  public boolean equals(Object otherRestaurant){
+    if (!(otherRestaurant instanceof Restaurant)) {
+      return false;
+    } else {
+      Restaurant newRestaurant = (Restaurant) otherRestaurant;
+      return this.getName().equals(newRestaurant.getName()); //&&
+        // this.getId() == newRestaurant.getId();
+    }
+  }
+
   // //CREATE
   // public void save() {
   //   try (Connection con = DB.sql2o.open()) {

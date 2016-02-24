@@ -19,6 +19,13 @@ public class RestaurantTest {
   }
 
   @Test
+  public void equals_returnsTrueIfRestaurantNamesAreTheSame() {
+    Restaurant newResty = new Restaurant("Bobby");
+    Restaurant newRestyToo = new Restaurant("Bobby");
+    assertTrue(newResty.equals(newRestyToo));
+  }
+  
+  @Test
   public void getName_returnsName_string() {
     Restaurant newResty = new Restaurant("Bobby");
     assertEquals("Bobby", newResty.getName());
