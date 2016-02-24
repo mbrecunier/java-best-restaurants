@@ -9,11 +9,11 @@ public class Restaurant {
   public Restaurant (String newName) {
     this.name = newName;
   }
-  //
-  // public int getId() {
-  //   return mId;
-  // }
-  //
+
+  public int getId() {
+    return id;
+  }
+
   public String getName() {
     return name;
   }
@@ -48,6 +48,17 @@ public class Restaurant {
       return con.createQuery(sql).executeAndFetch(Restaurant.class);
     }
   }
+
+  public static Restaurant find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM restaurants WHERE id=:id;";
+      Restaurant restaurant = con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetchFirst(Restaurant.class);
+      return restaurant;
+    }
+  }
+
   //
   // //UPDATE
   // public void update(String newName) {

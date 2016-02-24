@@ -38,12 +38,12 @@ public class RestaurantTest {
     assertTrue(Restaurant.all().contains(newResty));
   }
 
-  // @Test
-  // public void find_returnsRestaurantFromDatabase_true() {
-  //   Restaurant newResty = new Restaurant("Cheryl's");
-  //   newResty.save();
-  //   assertEquals(newResty, Restaurant.find(newResty.getId()));
-  // }
+  @Test
+  public void find_returnsRestaurantFromDatabase_true() {
+    Restaurant newResty = new Restaurant("Cheryl's");
+    newResty.save();
+    assertEquals(newResty, Restaurant.find(newResty.getId()));
+  }
 
   // @Test
   // public void getId_returnsPatientId() {
