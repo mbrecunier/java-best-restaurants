@@ -6,8 +6,9 @@ public class Restaurant {
   private int cuisineId;
   private String name;
 
-  public Restaurant (String newName) {
+  public Restaurant (String newName, int cuisineId) {
     this.name = newName;
+    this.cuisineId = cuisineId;
   }
 
   public int getId() {
@@ -16,10 +17,6 @@ public class Restaurant {
 
   public String getName() {
     return name;
-  }
-
-  public void setCuisineId(int cuisineId) {
-    this.cuisineId = cuisineId;
   }
 
   public int getCuisineId() {

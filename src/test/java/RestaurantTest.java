@@ -9,7 +9,7 @@ public class RestaurantTest {
 
   @Test
   public void restaurant_instantiatesCorrectly_true() {
-    Restaurant newResty = new Restaurant("Cheryl's");
+    Restaurant newResty = new Restaurant("Cheryl's", 1);
     assertTrue(newResty instanceof Restaurant);
   }
 
@@ -20,34 +20,34 @@ public class RestaurantTest {
 
   @Test
   public void equals_returnsTrueIfRestaurantNamesAreTheSame() {
-    Restaurant newResty = new Restaurant("Bobby");
-    Restaurant newRestyToo = new Restaurant("Bobby");
+    Restaurant newResty = new Restaurant("Bobby", 1);
+    Restaurant newRestyToo = new Restaurant("Bobby", 1);
     assertTrue(newResty.equals(newRestyToo));
   }
 
   @Test
   public void getName_returnsName_string() {
-    Restaurant newResty = new Restaurant("Bobby");
+    Restaurant newResty = new Restaurant("Bobby", 1);
     assertEquals("Bobby", newResty.getName());
   }
 
   @Test
   public void save_restaurantToDatabase_true() {
-    Restaurant newResty = new Restaurant("Cheryl's");
+    Restaurant newResty = new Restaurant("Cheryl's", 1);
     newResty.save();
     assertTrue(Restaurant.all().contains(newResty));
   }
 
   @Test
   public void find_returnsRestaurantFromDatabase_true() {
-    Restaurant newResty = new Restaurant("Cheryl's");
+    Restaurant newResty = new Restaurant("Cheryl's", 1);
     newResty.save();
     assertEquals(newResty, Restaurant.find(newResty.getId()));
   }
 
   @Test
   public void getId_returnsRestaurantId() {
-    Restaurant newResty = new Restaurant("Cheryl's");
+    Restaurant newResty = new Restaurant("Cheryl's", 1);
     newResty.save();
     Restaurant savedRestaurant = Restaurant.find(newResty.getId());
     assertTrue(newResty.getId() == savedRestaurant.getId());
@@ -55,7 +55,7 @@ public class RestaurantTest {
 
   @Test
   public void update_changesRestaurantName() {
-    Restaurant newBaby = new Restaurant("Pizza Caboose");
+    Restaurant newBaby = new Restaurant("Pizza Caboose", 1);
     newBaby.save();
     newBaby.update("Chipotle");
     assertEquals(newBaby.getName(), "Chipotle");
@@ -63,18 +63,11 @@ public class RestaurantTest {
 
   @Test
   public void delete_removesRestaurant() {
-    Restaurant newResty = new Restaurant("Cheesy's");
+    Restaurant newResty = new Restaurant("Cheesy's", 1);
     newResty.save();
     assertTrue(Restaurant.all().contains(newResty));
     newResty.delete();
     assertFalse(Restaurant.all().contains(newResty));
-  }
-
-  @Test
-  public void setCuisineId_setsCuisineId() {
-    Restaurant newBoobear = new Restaurant("Beebop Landcam");
-    newBoobear.setCuisineId(3);
-    assertEquals(3, newBoobear.getCuisineId());
   }
 
 }

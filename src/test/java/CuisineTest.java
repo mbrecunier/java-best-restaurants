@@ -43,4 +43,13 @@ public class CuisineTest {
     newCuisine.delete();
     assertFalse(Cuisine.all().contains(newCuisine));
   }
+
+  @Test
+  public void getRestaurants_returnsRestaurantsWithCorrectCuisineId() {
+    Cuisine newCuisine = new Cuisine("lettuce");
+    newCuisine.save();
+    Restaurant newResty = new Restaurant("Salad Land", newCuisine.getId());
+    newResty.save();
+    assertTrue(newCuisine.getRestaurants().contains(newResty));
+  }
 }

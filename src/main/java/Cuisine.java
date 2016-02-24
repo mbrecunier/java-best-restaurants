@@ -78,9 +78,14 @@ public class Cuisine {
     }
   }
 
-  // /******************************************************
-  //   Students:
-  //   TODO: Create method to get restaurants
-  // *******************************************************/
+  public List<Restaurant> getRestaurants() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM restaurants WHERE cuisineid =:id;";
+      List<Restaurant> restaurants = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetch(Restaurant.class);
+      return restaurants;
+    }
+  }
 
 }
