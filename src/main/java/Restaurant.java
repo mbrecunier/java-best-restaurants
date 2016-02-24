@@ -18,6 +18,14 @@ public class Restaurant {
     return name;
   }
 
+  public void setCuisineId(int cuisineId) {
+    this.cuisineId = cuisineId;
+  }
+
+  public int getCuisineId() {
+    return cuisineId;
+  }
+
   @Override
   public boolean equals(Object otherRestaurant){
     if (!(otherRestaurant instanceof Restaurant)) {
@@ -59,7 +67,6 @@ public class Restaurant {
     }
   }
 
-
   //UPDATE
   public void update(String newName) {
     this.name = newName;
@@ -81,10 +88,7 @@ public class Restaurant {
         .executeUpdate();
     }
   }
-  //
-  // /******************************************************
-  //   Students:
-  //   TODO: Create find method
+
   //   TODO: Create method to get cuisine type
   // *******************************************************/
 

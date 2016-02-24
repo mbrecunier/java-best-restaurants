@@ -70,4 +70,12 @@ public class RestaurantTest {
     assertFalse(Restaurant.all().contains(newResty));
   }
 
+  @Test
+  public void setCuisineId_setsCuisineId() {
+    Restaurant newBoobear = new Restaurant("Beebop Landcam");
+    newBoobear.setCuisineId(3);
+    assertEquals(3, newBoobear.getCuisineId());
+  }
+
+
 }
