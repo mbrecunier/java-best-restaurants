@@ -54,11 +54,19 @@ public class RestaurantTest {
   }
 
   @Test
-  public void update_changesRestaurantName() {
+  public void updateName_changesRestaurantName() {
     Restaurant newBaby = new Restaurant("Pizza Caboose", 1);
     newBaby.save();
-    newBaby.update("Chipotle");
+    newBaby.updateName("Chipotle");
     assertEquals(newBaby.getName(), "Chipotle");
+  }
+
+  @Test
+  public void updateCuisineId_changesCuisineId() {
+    Restaurant newPlace = new Restaurant("Dog Plaza", 1);
+    newPlace.save();
+    newPlace.updateCuisineId(3);
+    assertEquals(newPlace.getCuisineId(), 3);
   }
 
   @Test

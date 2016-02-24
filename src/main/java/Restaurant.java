@@ -65,7 +65,7 @@ public class Restaurant {
   }
 
   //UPDATE
-  public void update(String newName) {
+  public void updateName(String newName) {
     this.name = newName;
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE restaurants SET name =:newName WHERE id=:id;";
@@ -75,6 +75,18 @@ public class Restaurant {
         .executeUpdate();
     }
   }
+
+  public void updateCuisineId(int newCuisineId) {
+    this.cuisineId = newCuisineId;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE restaurants SET cuisineid =:newCuisineId WHERE id=:id;";
+      con.createQuery(sql)
+        .addParameter("newCuisineId", newCuisineId)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
 
   //DELETE
   public void delete() {
