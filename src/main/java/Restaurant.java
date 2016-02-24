@@ -5,6 +5,7 @@ public class Restaurant {
   private int id;
   private int cuisineId;
   private String name;
+  private String phoneNumber;
 
   public Restaurant (String newName, int cuisineId) {
     this.name = newName;
@@ -21,6 +22,10 @@ public class Restaurant {
 
   public int getCuisineId() {
     return cuisineId;
+  }
+
+  public String getPhoneNumber() {
+    return phoneNumber;
   }
 
   @Override
@@ -82,6 +87,17 @@ public class Restaurant {
       String sql = "UPDATE restaurants SET cuisineid =:newCuisineId WHERE id=:id;";
       con.createQuery(sql)
         .addParameter("newCuisineId", newCuisineId)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public void addPhoneNumber(String newPhoneNumber) {
+    this.phoneNumber = newPhoneNumber;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE restaurants SET phonenumber =:newPhoneNumber WHERE id=:id;";
+      con.createQuery(sql)
+        .addParameter("newPhoneNumber", newPhoneNumber)
         .addParameter("id", id)
         .executeUpdate();
     }
