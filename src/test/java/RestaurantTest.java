@@ -61,4 +61,13 @@ public class RestaurantTest {
     assertEquals(newBaby.getName(), "Chipotle");
   }
 
+  @Test
+  public void delete_removesRestaurant() {
+    Restaurant newResty = new Restaurant("Cheesy's");
+    newResty.save();
+    assertTrue(Restaurant.all().contains(newResty));
+    newResty.delete();
+    assertFalse(Restaurant.all().contains(newResty));
+  }
+
 }

@@ -71,15 +71,16 @@ public class Restaurant {
         .executeUpdate();
     }
   }
-  //
-  // //DELETE
-  // public void delete() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     /******************************************************
-  //       Students: TODO: Display all restaurants on main page
-  //     *******************************************************/
-  //   }
-  // }
+
+  //DELETE
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM restaurants WHERE id=:id;";
+      con.createQuery(sql)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
   //
   // /******************************************************
   //   Students:
