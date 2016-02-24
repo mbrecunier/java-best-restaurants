@@ -77,5 +77,4 @@ public class RestaurantTest {
     assertEquals(3, newBoobear.getCuisineId());
   }
 
-
 }

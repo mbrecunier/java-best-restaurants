@@ -2,31 +2,31 @@ import org.sql2o.*;
 import java.util.List;
 
 public class Cuisine {
-  // private int mId;
-  // private String mType;
-  //
-  // public Cuisine (String type) {
-  //   this.mType = type;
-  // }
+  private int id;
+  private String type;
+
+  public Cuisine (String type) {
+    this.type = type;
+  }
   //
   // public int getId() {
   //   return mId;
   // }
-  //
-  // public String getType() {
-  //   return mType;
-  // }
-  //
-  // @Override
-  // public boolean equals(Object otherCuisine){
-  //   if (!(otherCuisine instanceof Cuisine)) {
-  //     return false;
-  //   } else {
-  //     Cuisine newCuisine = (Cuisine) otherCuisine;
-  //     return this.getType().equals(newCuisine.getType()) &&
-  //       this.getId() == newCuisine.getId();
-  //   }
-  // }
+
+  public String getType() {
+    return type;
+  }
+
+  @Override
+  public boolean equals(Object otherCuisine){
+    if (!(otherCuisine instanceof Cuisine)) {
+      return false;
+    } else {
+      Cuisine newCuisine = (Cuisine) otherCuisine;
+      return this.getType().equals(newCuisine.getType()); //&&
+        // this.getId() == newCuisine.getId();
+    }
+  }
   //
   // //CREATE
   // public void save() {
@@ -37,14 +37,13 @@ public class Cuisine {
   //   }
   // }
   //
-  // //READ
-  // public static List<Cuisine> all() {
-  //   try (Connection con = DB.sql2o.open()) {
-  //     /******************************************************
-  //       Students: TODO: Create sql query and execute update
-  //     *******************************************************/
-  //   }
-  // }
+  //READ
+  public static List<Cuisine> all() {
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM cuisines;";
+      return con.createQuery(sql).executeAndFetch(Cuisine.class);
+    }
+  }
   //
   // //UPDATE
   // public void update(String newType) {

@@ -89,7 +89,4 @@ public class Restaurant {
     }
   }
 
-  //   TODO: Create method to get cuisine type
-  // *******************************************************/
-
 }
