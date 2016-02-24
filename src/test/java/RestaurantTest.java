@@ -61,13 +61,14 @@ public class RestaurantTest {
     assertEquals("111-222-3333", newResty.getPhoneNumber());
   }
 
-  // @Test
-  // public void update_updatesAllRestaurantProperties() {
-  //   Restaurant newBaby = new Restaurant("Pizza Caboose", 1);
-  //   newBaby.save();
-  //   newBaby.updateName("Chipotle");
-  //   assertEquals(newBaby.getName(), "Chipotle");
-  // }
+  @Test
+  public void update_updatesAllRestaurantProperties() {
+    Restaurant newBaby = new Restaurant("Pizza Caboose", 1);
+    newBaby.save();
+    newBaby.update("Chipotle", 2, "444-222-1131", "Portland", "$");
+    assertEquals("Chipotle", newBaby.getName());
+    assertEquals("Portland", newBaby.getLocation());
+  }
 
   @Test
   public void delete_removesRestaurant() {

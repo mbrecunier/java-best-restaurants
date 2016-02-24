@@ -6,10 +6,19 @@ public class Restaurant {
   private int cuisineId;
   private String name;
   private String phoneNumber;
+  private String location;
+  private String cost;
 
   public Restaurant (String newName, int cuisineId) {
     this.name = newName;
     this.cuisineId = cuisineId;
+  }
+  public String getLocation() {
+    return location;
+  }
+
+  public String getCost() {
+    return cost;
   }
 
   public int getId() {
@@ -70,23 +79,20 @@ public class Restaurant {
   }
 
   //UPDATE
-  public void updateName(String newName) {
+  public void update(String newName, int newCuisineId, String newPhoneNumber, String newLocation, String newCost) {
     this.name = newName;
+    this.cuisineId = newCuisineId;
+    this.phoneNumber = newPhoneNumber;
+    this.location = newLocation;
+    this.cost = newCost;
     try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE restaurants SET name =:newName WHERE id=:id;";
+      String sql = "UPDATE restaurants SET name =:newName, cuisineid=:newCuisineId, phonenumber=:newPhoneNumber, location=:newLocation, cost=:newCost WHERE id=:id;";
       con.createQuery(sql)
         .addParameter("newName", newName)
-        .addParameter("id", id)
-        .executeUpdate();
-    }
-  }
-
-  public void updateCuisineId(int newCuisineId) {
-    this.cuisineId = newCuisineId;
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE restaurants SET cuisineid =:newCuisineId WHERE id=:id;";
-      con.createQuery(sql)
         .addParameter("newCuisineId", newCuisineId)
+        .addParameter("newPhoneNumber", newPhoneNumber)
+        .addParameter("newLocation", newLocation)
+        .addParameter("newCost", newCost)
         .addParameter("id", id)
         .executeUpdate();
     }
