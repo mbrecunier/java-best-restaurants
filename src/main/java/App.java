@@ -19,14 +19,26 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/new/restaurant", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      String name = request.queryParams("name");
+      int cuisineId = Integer.parseInt(request.queryParams("cuisineId"));
+      Restaurant newResty = new Restaurant(name, cuisineId);
+      newResty.save();
+
+      model.put("cuisines", Cuisine.all());
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     /******************************************************
     Students: TODO: Create page to add a new restaurant
     *******************************************************/
-    get("/new-restaurant", (request, reponse) -> {
-      HashMap<String, Object> model = new HashMap<String, Object>();
-      model.put("template", "templates/newrestaurant.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
+    // get("/new-restaurant", (request, reponse) -> {
+    //   HashMap<String, Object> model = new HashMap<String, Object>();
+    //   model.put("template", "templates/newrestaurant.vtl");
+    //   return new ModelAndView(model, layout);
+    // }, new VelocityTemplateEngine());
 
     /******************************************************
     STUDENTS:
