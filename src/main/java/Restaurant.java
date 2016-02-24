@@ -24,8 +24,8 @@ public class Restaurant {
       return false;
     } else {
       Restaurant newRestaurant = (Restaurant) otherRestaurant;
-      return this.getName().equals(newRestaurant.getName()); //&&
-        // this.getId() == newRestaurant.getId();
+      return this.getName().equals(newRestaurant.getName()) &&
+        this.getId() == newRestaurant.getId();
     }
   }
 
@@ -59,16 +59,18 @@ public class Restaurant {
     }
   }
 
-  //
-  // //UPDATE
-  // public void update(String newName) {
-  //   this.mName = newName;
-  //   try(Connection con = DB.sql2o.open()) {
-  //     /******************************************************
-  //       Students: TODO: Display all restaurants on main page
-  //     *******************************************************/
-  //     }
-  // }
+
+  //UPDATE
+  public void update(String newName) {
+    this.name = newName;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE restaurants SET name =:newName WHERE id=:id;";
+      con.createQuery(sql)
+        .addParameter("newName", newName)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
   //
   // //DELETE
   // public void delete() {

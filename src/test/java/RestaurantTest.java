@@ -45,13 +45,20 @@ public class RestaurantTest {
     assertEquals(newResty, Restaurant.find(newResty.getId()));
   }
 
-  // @Test
-  // public void getId_returnsPatientId() {
-  //   Patient testPatient = new Patient("john", "01/01/10");
-  //   testPatient.save();
-  //   Patient savedPatient = Patient.find(testPatient.getId());
-  //   assertTrue((Integer) savedPatient.getId() instanceof Integer);
-  // }
+  @Test
+  public void getId_returnsRestaurantId() {
+    Restaurant newResty = new Restaurant("Cheryl's");
+    newResty.save();
+    Restaurant savedRestaurant = Restaurant.find(newResty.getId());
+    assertTrue(newResty.getId() == savedRestaurant.getId());
+  }
 
+  @Test
+  public void update_changesRestaurantName() {
+    Restaurant newBaby = new Restaurant("Pizza Caboose");
+    newBaby.save();
+    newBaby.update("Chipotle");
+    assertEquals(newBaby.getName(), "Chipotle");
+  }
 
 }
