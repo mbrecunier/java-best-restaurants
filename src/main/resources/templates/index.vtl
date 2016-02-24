@@ -1,1 +1,14 @@
+index.vtl
+
 <h1>Best Restaurants</h1>
+<hr>
+<ul>
+  #foreach ($cuisine in $cuisines)
+  <li>$cuisine.getType()</li>
+    <ul>
+      #foreach ($restaurant in $cuisine.getRestaurants())
+        <li>$restaurant.getName()</li>
+      #end
+    </ul>
+  #end
+</ul>
