@@ -69,14 +69,15 @@ public class Cuisine {
     }
   }
 
-  // public void delete() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     /******************************************************
-  //       Students: TODO: Create sql query and execute update
-  //     *******************************************************/
-  //   }
-  // }
-  //
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM cuisines WHERE id = :id;";
+      con.createQuery(sql)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
   // /******************************************************
   //   Students:
   //   TODO: Create method to get restaurants

@@ -34,4 +34,13 @@ public class CuisineTest {
     newCuisine.update("lean");
     assertEquals(newCuisine.getType(), "lean");
   }
+
+  @Test
+  public void delete_removesCuisineFromCuisines_true() {
+    Cuisine newCuisine = new Cuisine("beans");
+    newCuisine.save();
+    assertTrue(Cuisine.all().contains(newCuisine));
+    newCuisine.delete();
+    assertFalse(Cuisine.all().contains(newCuisine));
+  }
 }
