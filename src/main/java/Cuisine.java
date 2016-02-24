@@ -27,16 +27,18 @@ public class Cuisine {
         // this.getId() == newCuisine.getId();
     }
   }
-  //
-  // //CREATE
-  // public void save() {
-  //   try (Connection con = DB.sql2o.open()) {
-  //     /******************************************************
-  //       Students: TODO: Create sql query and execute update
-  //     *******************************************************/
-  //   }
-  // }
-  //
+
+  //CREATE
+  public void save() {
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO cuisines(type) VALUES (:type);";
+      id = (int) con.createQuery(sql,true)
+        .addParameter("type", type)
+        .executeUpdate()
+        .getKey();
+    }
+  }
+
   //READ
   public static List<Cuisine> all() {
     try (Connection con = DB.sql2o.open()) {

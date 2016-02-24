@@ -12,4 +12,11 @@ public class CuisineTest {
   public void all_emptyAtFirst() {
     assertEquals(Cuisine.all().size(), 0);
   }
+
+  @Test
+  public void save_addsCuisineToDatabase_True() {
+    Cuisine western = new Cuisine("beans");
+    western.save();
+    assertTrue(Cuisine.all().contains(western));
+  }
 }
