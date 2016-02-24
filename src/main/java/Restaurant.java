@@ -98,18 +98,6 @@ public class Restaurant {
     }
   }
 
-  public void addPhoneNumber(String newPhoneNumber) {
-    this.phoneNumber = newPhoneNumber;
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE restaurants SET phonenumber =:newPhoneNumber WHERE id=:id;";
-      con.createQuery(sql)
-        .addParameter("newPhoneNumber", newPhoneNumber)
-        .addParameter("id", id)
-        .executeUpdate();
-    }
-  }
-
-
   //DELETE
   public void delete() {
     try(Connection con = DB.sql2o.open()) {

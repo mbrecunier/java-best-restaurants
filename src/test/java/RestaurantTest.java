@@ -54,14 +54,6 @@ public class RestaurantTest {
   }
 
   @Test
-  public void addPhoneNumber_declareRestaurantPhoneNumber() {
-    Restaurant newResty = new Restaurant("Paula's", 1);
-    newResty.save();
-    newResty.addPhoneNumber("111-222-3333");
-    assertEquals("111-222-3333", newResty.getPhoneNumber());
-  }
-
-  @Test
   public void update_updatesAllRestaurantProperties() {
     Restaurant newBaby = new Restaurant("Pizza Caboose", 1);
     newBaby.save();
