@@ -14,9 +14,9 @@ public class Restaurant {
   //   return mId;
   // }
   //
-  // public String getName() {
-  //   return mName;
-  // }
+  public String getName() {
+    return name;
+  }
   //
   // @Override
   // public boolean equals(Object otherRestaurant){

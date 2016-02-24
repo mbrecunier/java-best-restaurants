@@ -15,7 +15,13 @@ public class RestaurantTest {
 
   @Test
   public void all_emptyAtFirst() {
-      assertEquals(Restaurant.all().size(), 0);
+    assertEquals(Restaurant.all().size(), 0);
+  }
+
+  @Test
+  public void getName_returnsName_string() {
+    Restaurant newResty = new Restaurant("Bobby");
+    assertEquals("Bobby", newResty.getName());
   }
 
 
