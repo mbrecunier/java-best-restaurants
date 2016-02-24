@@ -2,11 +2,12 @@ import org.sql2o.*;
 import java.util.List;
 
 public class Restaurant {
-  // private int mId;
-  private String mName;
+  private int id;
+  private int cuisineId;
+  private String name;
   //
-  public Restaurant (String name) {
-    this.mName = name;
+  public Restaurant (String newName) {
+    this.name = newName;
   }
   //
   // public int getId() {
@@ -37,14 +38,13 @@ public class Restaurant {
   //   }
   // }
   //
-  //READ
-  // public static List<Restaurant> all() {
-  //   try (Connection con = DB.sql2o.open()) {
-  //     /******************************************************
-  //       Students: TODO: Display all restaurants on main page
-  //     *******************************************************/
-  //   }
-  // }
+  // READ
+  public static List<Restaurant> all() {
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM restaurants;";
+      return con.createQuery(sql).executeAndFetch(Restaurant.class);
+    }
+  }
   //
   // //UPDATE
   // public void update(String newName) {

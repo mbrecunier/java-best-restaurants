@@ -13,10 +13,10 @@ public class RestaurantTest {
     assertTrue(newResty instanceof Restaurant);
   }
 
-  // @Test
-  // public void all_emptyAtFirst() {
-  //     assertEquals(Restaurant.all().size(), 0);
-  // }
+  @Test
+  public void all_emptyAtFirst() {
+      assertEquals(Restaurant.all().size(), 0);
+  }
 
 
 }
