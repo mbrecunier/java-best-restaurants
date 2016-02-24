@@ -29,15 +29,18 @@ public class Restaurant {
     }
   }
 
-  // //CREATE
-  // public void save() {
-  //   try (Connection con = DB.sql2o.open()) {
-  //     /******************************************************
-  //       Students: TODO: Display all restaurants on main page
-  //     *******************************************************/
-  //   }
-  // }
-  //
+  //CREATE
+  public void save() {
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO restaurants (name, cuisineId) VALUES (:name, :cuisineId);";
+      this.id = (int) con.createQuery(sql,true)
+        .addParameter("name", this.name)
+        .addParameter("cuisineId", this.cuisineId)
+        .executeUpdate()
+        .getKey();
+      }
+  }
+
   // READ
   public static List<Restaurant> all() {
     try (Connection con = DB.sql2o.open()) {
