@@ -53,21 +53,20 @@ public class RestaurantTest {
     assertTrue(newResty.getId() == savedRestaurant.getId());
   }
 
-  @Test
-  public void updateName_changesRestaurantName() {
-    Restaurant newBaby = new Restaurant("Pizza Caboose", 1);
-    newBaby.save();
-    newBaby.updateName("Chipotle");
-    assertEquals(newBaby.getName(), "Chipotle");
-  }
+  // public void addPhoneNumber_declareRestaurantPhoneNumber() {
+  //   Restaurant newResty = new Restaurant("Paula's", 1);
+  //   newResty.save();
+  //   newResty.addPhoneNumber("111-222-3333");
+  //   assertEquals("111-222-3333", newResty.getPhoneNumber());
+  // }
 
-  @Test
-  public void updateCuisineId_changesCuisineId() {
-    Restaurant newPlace = new Restaurant("Dog Plaza", 1);
-    newPlace.save();
-    newPlace.updateCuisineId(3);
-    assertEquals(newPlace.getCuisineId(), 3);
-  }
+  // @Test
+  // public void update_updatesAllRestaurantProperties() {
+  //   Restaurant newBaby = new Restaurant("Pizza Caboose", 1);
+  //   newBaby.save();
+  //   newBaby.updateName("Chipotle");
+  //   assertEquals(newBaby.getName(), "Chipotle");
+  // }
 
   @Test
   public void delete_removesRestaurant() {
