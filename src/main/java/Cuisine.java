@@ -8,10 +8,10 @@ public class Cuisine {
   public Cuisine (String type) {
     this.type = type;
   }
-  //
-  // public int getId() {
-  //   return mId;
-  // }
+
+  public int getId() {
+    return id;
+  }
 
   public String getType() {
     return type;
@@ -44,6 +44,16 @@ public class Cuisine {
     try (Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM cuisines;";
       return con.createQuery(sql).executeAndFetch(Cuisine.class);
+    }
+  }
+
+  public static Cuisine find(int id) {
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM cuisines WHERE id=:id;";
+      Cuisine cuisine = con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetchFirst(Cuisine.class);
+      return cuisine;
     }
   }
   //

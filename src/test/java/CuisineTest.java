@@ -19,4 +19,11 @@ public class CuisineTest {
     western.save();
     assertTrue(Cuisine.all().contains(western));
   }
+
+  @Test
+  public void find_returnsCuisineObject_True() {
+    Cuisine newCuisine = new Cuisine("cuisine");
+    newCuisine.save();
+    assertTrue(newCuisine.equals(Cuisine.find(newCuisine.getId())));
+  }
 }
