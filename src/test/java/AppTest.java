@@ -67,6 +67,17 @@ public class AppTest extends FluentTest {
     String restaurantPath = String.format("http://localhost:4567/restaurant/%d", newResty.getId());
     goTo(restaurantPath);
     assertThat(pageSource()).contains("Update");
+    assertThat(pageSource()).contains("Yao Ming");
+  }
 
+  @Test
+  public void updatePage() {
+    Cuisine newCuisine = new Cuisine("American");
+    newCuisine.save();
+    Restaurant newResty = new Restaurant("Jimmy John's", newCuisine.getId());
+    newResty.save();
+    String restaurantPath = String.format("http://localhost:4567/update/%d", newResty.getId());
+    goTo(restaurantPath);
+    assertThat(pageSource()).contains("Update Restaurant Information:");
   }
 }
