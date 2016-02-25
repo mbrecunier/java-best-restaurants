@@ -2,7 +2,7 @@ cuisinecheck.vtl
 
 #if ($newResty.getCuisineId() == 0)
   <h2>What type of cuisine is served at $newResty.getName()?</h2>
-  <form action="/new/cuisine" method="post">
+  <form action="/cuisine" method="post">
     <div class="form-group">
       <label for="cuisine">Cuisine Type:</label>
       <input name="cuisine" id="cuisine" type="text">
@@ -15,7 +15,7 @@ cuisinecheck.vtl
     <li>$cuisine.getType()</li>
       <ul>
         #foreach ($restaurant in $cuisine.getRestaurants())
-          <li>$restaurant.getName()</li>
+          <li><a href="restaurant/$restaurant.getId()">$restaurant.getName()</a></li>
         #end
       </ul>
     #end

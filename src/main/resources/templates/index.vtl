@@ -2,7 +2,7 @@ index.vtl
 
 <h1>Best Restaurants</h1>
 <hr>
-<form action="/new/restaurant" method="post">
+<form action="restaurant" method="post">
   <div class="form-group">
     <label for="name">Restaurant Name:</label>
     <input name="name" id="name" type="text">
@@ -24,7 +24,7 @@ index.vtl
   <li>$cuisine.getType()</li>
     <ul>
       #foreach ($restaurant in $cuisine.getRestaurants())
-        <li>$restaurant.getName()</li>
+        <li><a href="restaurant/$restaurant.getId()">$restaurant.getName()</a></li>
       #end
     </ul>
   #end
