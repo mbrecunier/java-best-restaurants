@@ -12,12 +12,14 @@ cuisinecheck.vtl
   <hr>
   <ul>
     #foreach ($cuisine in $cuisines)
-    <li>$cuisine.getType()</li>
-      <ul>
-        #foreach ($restaurant in $cuisine.getRestaurants())
-          <li><a href="restaurant/$restaurant.getId()">$restaurant.getName()</a></li>
-        #end
-      </ul>
+      #if ($cuisine.getRestaurants().size() > 0)
+        <li>$cuisine.getType()</li>
+        <ul>
+          #foreach ($restaurant in $cuisine.getRestaurants())
+            <li>$restaurant.getName()</li>
+          #end
+        </ul>
+      #end
     #end
   </ul>
 #else

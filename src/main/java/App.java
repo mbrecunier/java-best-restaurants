@@ -56,6 +56,16 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      String restaurantId = request.params(":id");
+      Restaurant oldResty = Restaurant.find(Integer.parseInt(restaurantId));
+      oldResty.delete();
+      model.put("cuisines", Cuisine.all());
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
 
     /******************************************************
     Students: TODO: Create page to add a new restaurant
