@@ -25,7 +25,7 @@ index.vtl
       <li>$cuisine.getType()</li>
       <ul>
         #foreach ($restaurant in $cuisine.getRestaurants())
-          <li><a href="/restaurant/$restaurant.getId()">$restaurant.getName()</a></li>
+          <a href="/restaurant/$restaurant.getId()"><li>$restaurant.getName()</li></a>
         #end
       </ul>
     #end

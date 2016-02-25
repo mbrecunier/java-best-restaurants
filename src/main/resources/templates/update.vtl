@@ -1,11 +1,11 @@
 <form action="/restaurant/$restaurant.getId()" method="post">
   <div class="form-group">
     <label for="name">Restaurant Name</label>
-    <input type="text" name="name" placeholder="$restaurant.getName()">
+    <textarea class="form-control" rows="1" name="name">$restaurant.getName()</textarea>
   </div>
   <div class="form-group">
     <label for="type">Cuisine Type:</label>
-    <select id='cuisineId' name='cuisineId' type='text'>
+    <select class="form-control" id='cuisineId' name='cuisineId' type='text'>
       <option value="$restaurant.getCuisineId()" selected>$cuisineClass.find($restaurant.getCuisineId()).getType()</option>
       #foreach($cuisine in $cuisines)
         #if ($cuisine.getId() != $restaurant.getCuisineId())
@@ -16,15 +16,20 @@
   </div>
   <div class="form-group">
     <label for="location">Location</label>
-    <input type="text" name="location" placeholder="$restaurant.getLocation()">
+    <textarea class="form-control" rows="1" name="location">$restaurant.getLocation()</textarea>
   </div>
   <div class="form-group">
     <label for="phoneNumber">Phone Number</label>
-    <input type="text" name="phoneNumber" placeholder="$restaurant.getPhoneNumber()">
+    <textarea class="form-control" rows="1" name="phoneNumber">$restaurant.getPhoneNumber()</textarea>
   </div>
   <div class="form-group">
     <label for="cost">Cost</label>
-    <input type="text" name="cost" placeholder="$restaurant.getCost()">
+    <select class="form-control" id='cost' name='cost'>
+      <option value="$">$</option>
+      <option value="$$" selected>$$</option>
+      <option value="$$$">$$$</option>
+      <option value="$$$$">$$$$</option>
+    </select>
   </div>
   <button type="submit" class="btn btn-warning">Update</button>
 </form>
