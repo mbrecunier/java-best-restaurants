@@ -60,7 +60,14 @@ public class App {
       HashMap<String, Object> model = new HashMap<String, Object>();
       String restaurantId = request.params(":id");
       Restaurant oldResty = Restaurant.find(Integer.parseInt(restaurantId));
+      int questionableCuisineId = oldResty.getCuisineId();
+      Cuisine questionableCuisine = Cuisine.find(questionableCuisineId);
       oldResty.delete();
+
+      if (questionableCuisine.getRestaurants().size() == 0) {
+        questionableCuisine.delete();
+      }
+
       model.put("cuisines", Cuisine.all());
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
