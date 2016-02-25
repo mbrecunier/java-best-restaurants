@@ -1,11 +1,11 @@
 <h1>$restaurant.getName()</h1>
-<h3>$cuisine.find($restaurant.getCuisineId()).getType()</h3>
+<h2>$cuisine.find($restaurant.getCuisineId()).getType()</h2>
 <h3>$restaurant.getLocation()</h3>
 <h3>$restaurant.getPhoneNumber()</h3>
 <h3>$restaurant.getCost()</h3>
 <hr>
 <a href="/"><button class="btn btn-primary">Home Page</button></a>
+<a href="/update/$restaurant.getId()"><button class="btn btn-warning">Update</button></a>
 <form class="delete-btn" action="/$restaurant.getId()" method="post">
   <button type="submit" class="btn btn-danger">Delete</button>
 </form>
-<a href="/update/$restaurant.getId()"><button class="btn btn-warning">Update</button></a>

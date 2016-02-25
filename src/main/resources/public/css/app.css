@@ -1,5 +1,10 @@
-.delete-btn {
+.delete-btn, .pretend-btn {
   display: inline;
+}
+
+a.pretend-button {
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 

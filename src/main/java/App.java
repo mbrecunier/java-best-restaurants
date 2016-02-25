@@ -37,7 +37,7 @@ public class App {
     post("/cuisine", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       String type = request.queryParams("cuisine");
-      Cuisine newCuisine = new Cuisine(type);
+      Cuisine newCuisine = new Cuisine(type.toUpperCase());
       newCuisine.save();
       Restaurant newResty = request.session().attribute("newResty");
       newResty.update(newResty.getName(), newCuisine.getId(), "", "", "");

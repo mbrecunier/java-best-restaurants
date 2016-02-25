@@ -1,3 +1,4 @@
+<h2>Update Restaurant Information:</h2>
 <form action="/restaurant/$restaurant.getId()" method="post">
   <div class="form-group">
     <label for="name">Restaurant Name</label>
@@ -31,6 +32,7 @@
       <option value="$$$$">$$$$</option>
     </select>
   </div>
+  <a class="btn btn-primary pretend-button" href="/">Home Page</a>
   <button type="submit" class="btn btn-warning">Update</button>
+  <a class="btn btn-danger cancel-btn pretend-button" href="/restaurant/$restaurant.getId()">Cancel</a>
 </form>
-<a href="/"><button class="btn btn-primary">Cancel</button></a>
