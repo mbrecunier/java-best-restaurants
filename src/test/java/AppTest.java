@@ -40,11 +40,33 @@ public class AppTest extends FluentTest {
   }
 
   @Test
-  public void newCuisineDisplaysOnPage() {
+  public void restaurantWithoutCuisineAsksForNewCuisine() {
     goTo("http://localhost:4567/");
     fill("#name").with("Dar Salam");
     fillSelect("#cuisineId").withValue("0");
     submit(".btn");
     assertThat(pageSource()).contains("is served at Dar Salam");
+  }
+
+  @Test
+  public void newCuisineIsShownOnHomepage() {
+    Cuisine newCuisine = new Cuisine("Chinese");
+    newCuisine.save();
+    Restaurant newResty = new Restaurant("Yao Ming", newCuisine.getId());
+    newResty.save();
+    goTo("http://localhost:4567/");
+    assertThat(pageSource()).contains("Chinese");
+  }
+
+  @Test
+  public void eachRestaurantHasIndividualPage() {
+    Cuisine newCuisine = new Cuisine("Chinese");
+    newCuisine.save();
+    Restaurant newResty = new Restaurant("Yao Ming", newCuisine.getId());
+    newResty.save();
+    String restaurantPath = String.format("http://localhost:4567/restaurant/%d", newResty.getId());
+    goTo(restaurantPath);
+    assertThat(pageSource()).contains("Update");
+
   }
 }
