@@ -31,9 +31,20 @@ public class AppTest extends FluentTest {
 
   @Test
   public void newRestaurantDisplaysOnPage() {
-    Restaurant newResty = new Restaurant("Jimmy John's", 11);
+    Cuisine newCuisine = new Cuisine("American");
+    newCuisine.save();
+    Restaurant newResty = new Restaurant("Jimmy John's", newCuisine.getId());
     newResty.save();
     goTo("http://localhost:4567/");
     assertThat(pageSource()).contains("Jimmy John's");
+  }
+
+  @Test
+  public void newCuisineDisplaysOnPage() {
+    goTo("http://localhost:4567/");
+    fill("#name").with("Dar Salam");
+    fillSelect("#cuisineId").withValue("0");
+    submit(".btn");
+    assertThat(pageSource()).contains("is served at Dar Salam");
   }
 }
