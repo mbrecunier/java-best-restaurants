@@ -30,16 +30,16 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: cuisine; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+-- Name: cuisines; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
 --
 
-CREATE TABLE cuisine (
-    cuisine_id integer NOT NULL,
+CREATE TABLE cuisines (
+    id integer NOT NULL,
     type character varying
 );
 
 
-ALTER TABLE cuisine OWNER TO "Guest";
+ALTER TABLE cuisines OWNER TO "Guest";
 
 --
 -- Name: cuisine_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
@@ -59,7 +59,7 @@ ALTER TABLE cuisine_id_seq OWNER TO "Guest";
 -- Name: cuisine_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
 --
 
-ALTER SEQUENCE cuisine_id_seq OWNED BY cuisine.cuisine_id;
+ALTER SEQUENCE cuisine_id_seq OWNED BY cuisines.id;
 
 
 --
@@ -68,7 +68,11 @@ ALTER SEQUENCE cuisine_id_seq OWNED BY cuisine.cuisine_id;
 
 CREATE TABLE restaurants (
     id integer NOT NULL,
-    name character varying
+    name character varying,
+    cuisineid integer,
+    phonenumber character varying,
+    location character varying,
+    cost character varying
 );
 
 
@@ -96,10 +100,10 @@ ALTER SEQUENCE restaurants_id_seq OWNED BY restaurants.id;
 
 
 --
--- Name: cuisine_id; Type: DEFAULT; Schema: public; Owner: Guest
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
 --
 
-ALTER TABLE ONLY cuisine ALTER COLUMN cuisine_id SET DEFAULT nextval('cuisine_id_seq'::regclass);
+ALTER TABLE ONLY cuisines ALTER COLUMN id SET DEFAULT nextval('cuisine_id_seq'::regclass);
 
 
 --
@@ -110,29 +114,48 @@ ALTER TABLE ONLY restaurants ALTER COLUMN id SET DEFAULT nextval('restaurants_id
 
 
 --
--- Data for Name: cuisine; Type: TABLE DATA; Schema: public; Owner: Guest
---
-
-COPY cuisine (cuisine_id, type) FROM stdin;
-1	American
-2	Southern
-\.
-
-
---
 -- Name: cuisine_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('cuisine_id_seq', 2, true);
+SELECT pg_catalog.setval('cuisine_id_seq', 6, true);
+
+
+--
+-- Data for Name: cuisines; Type: TABLE DATA; Schema: public; Owner: Guest
+--
+
+COPY cuisines (id, type) FROM stdin;
+1	American
+2	Southern
+4	Mexican
+5	human food
+6	Thai
+\.
 
 
 --
 -- Data for Name: restaurants; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY restaurants (id, name) FROM stdin;
-1	Screen Door
-2	Lardo
+COPY restaurants (id, name, cuisineid, phonenumber, location, cost) FROM stdin;
+1	Screen Door	1	\N	\N	\N
+2	Lardo	1	\N	\N	\N
+3	Pizza Palace	1	\N	\N	\N
+4	Jimmy Johns	2	\N	\N	\N
+5	Grits and Tots	2	\N	\N	\N
+6	Cheesos	2	\N	\N	\N
+7	thai noon	0	\N	\N	\N
+8	pappie	1	\N	\N	\N
+9	pappie's	2	\N	\N	\N
+10	george's	1	\N	\N	\N
+11	pho-bulous	0	\N	\N	\N
+12	sonic	1	\N	\N	\N
+13	Chimmy Cha	4			
+14	Nacho Land	4	\N	\N	\N
+15	Anna's Bake	5			
+16	michelle's sustenance	5	\N	\N	\N
+17	Thai Mai Shu	6			
+18	Thai Land	6	\N	\N	\N
 \.
 
 
@@ -140,15 +163,15 @@ COPY restaurants (id, name) FROM stdin;
 -- Name: restaurants_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('restaurants_id_seq', 2, true);
+SELECT pg_catalog.setval('restaurants_id_seq', 18, true);
 
 
 --
 -- Name: cuisine_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
 --
 
-ALTER TABLE ONLY cuisine
-    ADD CONSTRAINT cuisine_pkey PRIMARY KEY (cuisine_id);
+ALTER TABLE ONLY cuisines
+    ADD CONSTRAINT cuisine_pkey PRIMARY KEY (id);
 
 
 --
