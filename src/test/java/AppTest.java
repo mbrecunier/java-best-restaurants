@@ -93,4 +93,17 @@ public class AppTest extends FluentTest {
     submit(".btn-warning");
     assertThat(pageSource()).contains("Portland");
   }
+
+  @Test
+  public void deleteRemovesRestaurantFromHomePage() {
+    Cuisine newCuisine = new Cuisine("American");
+    newCuisine.save();
+    Restaurant newResty = new Restaurant("Jimmy John's", newCuisine.getId());
+    newResty.save();
+    goTo("http://localhost:4567/");
+    assertThat(pageSource()).contains("Jimmy John's");
+    newResty.delete();
+    goTo("http://localhost:4567/");
+    assertThat(pageSource()).doesNotContain("Jimmy John's");
+  }
 }
