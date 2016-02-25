@@ -2,13 +2,6 @@ index.vtl
 
 <h1>Best Restaurants</h1>
 <hr>
-<!-- form to add restaurant -->
-  <!-- add name -->
-  <!-- add cuisine id from dropdown -->
-    <!-- if they choose other -->
-      <!-- a new input shows up that creates a new cuisine -->
-<!-- submit  -->
-
 <form action="/new/restaurant" method="post">
   <div class="form-group">
     <label for="name">Restaurant Name:</label>
@@ -20,7 +13,7 @@ index.vtl
     #foreach($cuisine in $cuisines)
       <option value="$cuisine.getId()">$cuisine.getType()</option>
     #end
-      <option>Other</option>
+      <option value="0">Other</option>
     </select>
   </div>
   <button class="btn btn-success" type="submit">Submit</button>
