@@ -80,4 +80,17 @@ public class AppTest extends FluentTest {
     goTo(restaurantPath);
     assertThat(pageSource()).contains("Update Restaurant Information:");
   }
+
+  @Test
+  public void updateButtonChangesRestaurantInformationDisplay() {
+    Cuisine newCuisine = new Cuisine("American");
+    newCuisine.save();
+    Restaurant newResty = new Restaurant("Jimmy John's", newCuisine.getId());
+    newResty.save();
+    String restaurantPath = String.format("http://localhost:4567/update/%d", newResty.getId());
+    goTo(restaurantPath);
+    fill("#location").with("Portland");
+    submit(".btn-warning");
+    assertThat(pageSource()).contains("Portland");
+  }
 }
