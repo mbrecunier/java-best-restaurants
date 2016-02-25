@@ -66,6 +66,34 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/update/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      String restaurantId = request.params(":id");
+      Restaurant restaurant = Restaurant.find(Integer.parseInt(restaurantId));
+      model.put("restaurant", restaurant);
+      model.put("cuisines", Cuisine.all());
+      model.put("cuisineClass", Cuisine.class);
+      model.put("template", "templates/update.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
+    post("/restaurant/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      String restaurantId = request.params(":id");
+      Restaurant restaurant = Restaurant.find(Integer.parseInt(restaurantId));
+      String name = request.queryParams("name");
+      int cuisineId = Integer.parseInt(request.queryParams("cuisineId"));
+      String phoneNumber = request.queryParams("phoneNumber");
+      String location = request.queryParams("location");
+      String cost = request.queryParams("cost");
+      restaurant.update(name, cuisineId, phoneNumber, location, cost);
+      model.put("restaurant", restaurant);
+      model.put("cuisine", Cuisine.class);
+      model.put("template", "templates/restaurant.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
 
     /******************************************************
     Students: TODO: Create page to add a new restaurant
